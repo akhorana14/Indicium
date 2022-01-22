@@ -2,23 +2,37 @@
 import './home.css';
 import React from 'react'
 
-class Home extends React.Component {
-    render() {
-        var names = ['Article 1', 'Article 2', 'Article 3'];
+import PaperRow from './paper-row'
+
+function Home() {
+        var papers = [
+            {
+                title: 'The effect of dielectric environment on the neutral and charged dark excitons in WSe2 monolayer',
+                author: 'Dr. Arjun \'Bezos Beta\' Khorana',
+                id: 1
+            }, 
+            {
+                title: 'Article 2',
+                author: 'Dr. Arjun \'Bezos Beta\' Khorana',
+                id: 2
+            },
+            {
+                title: 'Article 3',
+                author: 'Dr. Arjun \'Bezos Beta\' Khorana',
+                id: 3
+            },
+        ];
         return (
                 <div id="background">
                     <div id="home-page">
                         <div id="title">Indicium</div>
-                        <table>
-                            {names.map(function(name, index) {
-                                return <tr key={index}>{name}</tr>
+                            {papers.map(function(paper, index) {
+                                return PaperRow({paper, index});
                             })}
-                        </table>
                     </div>
 
                 </div>
         )
-    }
 }
 
 export default Home;
