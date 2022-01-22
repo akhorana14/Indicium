@@ -1,9 +1,12 @@
+from typing import List
+from pandas import array
+
+
 class User(object):
 
-    def __init__(self, id = None, username = None, fullname = None, papers_owned = None, password = None):
+    def __init__(self, id: int = None, username: str = None, papers_owned: List[int] = None, password: str = None):
         self.id = id
         self.username = username
-        self.fullname = fullname
         self.papers_owned = papers_owned
         self.password = password
 
@@ -11,7 +14,6 @@ class User(object):
         return {
             'id': self.id,
             'username': self.username,
-            'fullname': self.fullname,
             'papers_owned': self.papers_owned,
             'password': self.password
         }

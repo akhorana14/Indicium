@@ -1,11 +1,14 @@
+from typing import List
+
+
 class Paper(object):
 
-    def __init__(self, id = None, title = None, desciption = None, official_author = None, 
-                 current_owner = None, previous_owners = None, is_on_sale = None, price = None,
-                 link = None):
+    def __init__(self, id: int = None, title: str = None, abstract: str = None, official_author: int = None, 
+                 current_owner: int = None, previous_owners: List[int] = None, is_on_sale: bool = None, price: str = None,
+                 link: str = None):
         self.id = id
         self.title = title
-        self.desciption = desciption
+        self.abstract = abstract
         self.official_author = official_author
         self.current_owner = current_owner
         self.previous_owners = previous_owners
@@ -17,7 +20,7 @@ class Paper(object):
         return {
             'id': self.id,
             'title': self.title,
-            'desciption': self.desciption,
+            'abstract': self.abstract,
             'official_author': self.official_author,
             'current_owner': self.current_owner,
             'previous_owners': self.previous_owners,

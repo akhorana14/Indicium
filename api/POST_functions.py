@@ -1,5 +1,9 @@
 from common import Paper
 from common import User
+from common import gcp_interface
+
+gcp = gcp_interface()
+
 def login(username, password):
     # query database
     # GET from query when == username && == password
@@ -9,19 +13,26 @@ def login(username, password):
 
     return 0 #return 1 if there's an error
 
-def create(email, password):
-    #query to see if username in the database
-    #if (exists database):
-    #   return 1
-    user = User(username = email, password = password, papers_owned = 0)
-    # POST to database
-    return user
+def create_user(username, password):
+    
+    exits = False
 
-def createResearchPaper(author, pdf, abstract, numTokens):
-    for (int i = 0; i < numTokens; i++):
-        paper = Paper(official_author = author, desciption = abstract, current_owner = author)
-        #query to database
+    user = None
 
-def getAbstract(uniqueid):
+    # exits = gcp.userExits(username)
+
+    # if exits: return 1
+
+    # create user in database with unique ID and no papers owned
+    # user = gcp.createUser(username, password)
+
+    return user if user else 0
+
+def createResearchPaper(author, pdf, abstract, num_papers):
+    # TODO lol, idk off the top of my head how to do this 
+    return 0
+
+def getAbstract(id):
     #query using id
-    return paper.abstract
+    # return gcp.getPaper(uniqueid).abstract
+    return 0
