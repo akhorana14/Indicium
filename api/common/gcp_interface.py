@@ -23,7 +23,7 @@ query =
 class gcp_interface(object):
 
     def __init__(self):
-        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"/Users/jacobzietek/Downloads/indicium-339016-6890be5f9725.json"
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"C:\Users\akhor\Downloads\indicium-339016-6890be5f9725.json"
         self.client = bigquery.Client()
         self.table_id = {"paper": "indicium-339016.purdue.papers", "user": "indicium-339016.purdue.users"}
 
