@@ -1,70 +1,18 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Inspiration
+With the growing number of brilliant minds forgoing academia in search for more sustainable options, our knowledge and curiosity are cast aside in our capitalist society. We aim to strike a balance between money and research to reincentivize researching while making a monetarily sustainable path those pursuing academia.
+## What it does
+Our project, Indicium, is a one-stop shop web application for selling and buying research papers. Unlike a journal, authors can upload their research to our website, and will recieve 
+## How we built it
+We built our webapp using a JavaScript + React frontend and a Python + Flask backend. Furthermore, we hosted our application as well as a database using GCP.
+## Challenges we ran into
+When coming up with our idea, we realized that piracy exists in the imperfect world we are in today. Although we cannot solve piracy as a whole, we can certainly do what we can to provide authors a better solution for their papers than journals.
+As for technical challenges, ____.
+## Accomplishments that we're proud of
+We are proud to have been able to come up with a fully-functional web application that features a login system, ___, ____, and ____ for Boilermake. 
+## What we learned
+Arjun: Through working on this project, I learned how to create a React + Flask app using a REST API. Furthermore, I learned how to host our project and database on GCP, which was a fairly simple process (Thanks Google Cloud!). Lastly, I learned a little more about developing algorithms in Python, as well as hashing functions using hashlib for Python3.
+Jacob:
+Abhinav: I centered divs.
+Akash: I centered divs.
+## What's next for Indicium
+Although some advanced key features of our project are not completely polished, we believe that Indicium has a place in the future of research. We wish to host our application as well as attempt to make a business model for earning a small amount of revenue from our application.
