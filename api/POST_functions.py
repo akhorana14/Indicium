@@ -20,3 +20,6 @@ def createResearchPaper(author, pdf, abstract, num_papers):
 
 def getAbstract(id):
     return gcp.get_paper_abstract(id)
+
+def getPaper(id):
+    return gcp.get_paper(id)
