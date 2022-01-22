@@ -14,9 +14,10 @@
 }
 
 #paper-row-title {
-    font-size: 30px;
+    font-size: 15px;
 }
 
 #paper-row-author {
     margin-top: 10px;
+    font-size:10px;
 }
