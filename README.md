@@ -1,5 +1,5 @@
 ## Inspiration
-With the growing number of brilliant minds forgoing academia in search for more sustainable options, our knowledge and curiosity are cast aside in our capitalist society. We aim to strike a balance between money and research to reincentivize researching while making a monetarily sustainable path those pursuing academia.
+With the growing number of brilliant minds forgoing academia in search for more sustainable options, our knowledge and curiosity are cast aside in our society. We aim to strike a balance between money and research to reincentivize researching while making a monetarily sustainable path those pursuing academia.
 ## What it does
 Our project, Indicium, is a one-stop shop web application for selling and buying research papers. Unlike a journal, authors can upload their research to our website, and will recieve 
 ## How we built it
