@@ -46,6 +46,12 @@ class gcp_interface(object):
             random_id = int(random() * 100000)
         return random_id
 
+    def generate_unique_paper_id(self) -> int:
+        random_id = int(random() * 100000)
+        while self.paper_id_exits(random_id):
+            random_id = int(random() * 100000)
+        return random_id
+
     def create_user(self, username: str, password: str) -> User:
         if self.user_exits(username):
             return None
@@ -56,6 +62,23 @@ class gcp_interface(object):
         query_job = self.client.query(query)
         query_job.result()
         return User(user_id, username, papersOwned, password, wallet)
+
+    def create_paper(self, author: str, title: str, link: str, abstract: str, num_papers: int) -> int:
+        ids = []
+        title = title
+        abstract = abstract
+        official_author = author
+        current_owner = author
+        previous_owners = " ".join([author])
+        is_on_sale = False
+        price = "0.00"
+        link = link
+        for i in range(num_papers):
+            id = self.generate_unique_paper_id()
+            ids.append(id)
+            query = "INSERT INTO {} (id, title, abstract, official_author, current_owner, previous_owners, is_on_sale, price, link) VALUES ({}, '{}', '{}', '{}', '{}', '{}', {}, '{}', '{}')".format(self.table_id["paper"], id, title, abstract, official_author, current_owner, previous_owners, is_on_sale, price, link)
+            query_job = self.client.query(query)
+        return ids
 
     def get_paper(self, id: int) -> Paper:
         query = "SELECT * FROM {} WHERE id = {}".format(self.table_id["paper"], id)

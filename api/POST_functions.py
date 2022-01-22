@@ -14,9 +14,8 @@ def create_user(username, password):
     user = gcp.createUser(username, password)
     return user if user else 1
 
-def createResearchPaper(author, pdf, abstract, num_papers):
-    # TODO lol, idk off the top of my head how to do this 
-    return 0
+def createResearchPaper(author_id, title, link, abstract, num_papers):
+    return gcp.create_paper(author_id, title, link, abstract, num_papers)    
 
 def getAbstract(id):
     return gcp.get_paper_abstract(id)
