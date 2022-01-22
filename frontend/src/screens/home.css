@@ -1,0 +1,28 @@
+#background {
+    width: 100vw;
+    font-family: 'Oswald';
+}
+
+#title {
+    font-size: 75px;
+    text-align: center;
+    padding-top:5vh;
+
+}
+
+#title::selection {
+    background:  #dddddd ;
+}
+
+#title::-moz-selection {
+    background:  #dddddd ; 
+}
+  
+
+#home-page {
+    width: 75vw;
+    text-align: center;
+    font-family: 'Oswald';
+    border-radius: 5px;
+    margin: auto;
+}

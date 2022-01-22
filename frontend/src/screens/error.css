@@ -1,6 +1,7 @@
 #background {
     background-color: #dddddd;
     width: 100vw;
+    height: 100vh;
     font-family: 'Oswald';
 }
 
@@ -8,7 +9,6 @@
     font-size: 150px;
     text-align: center;
     padding-top:5vh;
-
 }
 
 #title::selection {
@@ -18,22 +18,3 @@
     background:  #dddddd ; 
   }
   
-
-  #profile-page {
-    width: 75vw;
-    height: 100vh;
-    padding: 0;
-    text-align: center;
-    font-family: 'Oswald';
-    border-radius: 5px;
-    margin: auto;
-  }
-
-
-  #account-balance-info {
-      font-size: 30px;
-  }
-
-  #papers-title {
-      font-size: 50px;
-  }

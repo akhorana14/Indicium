@@ -1,0 +1,78 @@
+#signup-form {
+    width: 20vw;
+    height: 100vh;
+    padding: 0;
+    text-align: center;
+    font-family: 'Oswald';
+    border-radius: 5px;
+    margin: auto;
+}
+
+#signup-title {
+    padding-top: 50%;
+    font-weight: bold;
+}
+
+.input {
+  background-color:white;
+  color:black;
+  border:none;
+  width: 75%;
+  height: 5vh;
+  outline: none;
+  border-radius:15vh;
+  font-size:small;
+  padding-left:15%;
+  font-family: 'Oswald';
+}
+
+#input-email {
+  margin-top: 20px;
+}
+
+#input-password {
+  margin-top: 10px;
+}
+#input-password-2 {
+  margin-top: 10px;
+}
+
+#signup-submit {
+  margin-top:15px;
+  outline: none;
+  border: none;
+  background-color: black;
+  color: white;
+  height: 5vh;
+  width:50%;
+  border-radius:15vh;
+  font-weight: bold;
+  font-family: 'Oswald';
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+
+#signup-submit:hover {
+  transform: scale(1.1);
+}
+
+#have-account {
+  bottom: 10vh;
+  position: absolute;
+  width: 20%;
+}
+
+
+#log-in-wrapper { 
+  bottom:5vh;
+  position: absolute;
+  width: 20%;
+}
+
+#log-in {
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+  width: max-content;
+  margin: auto;
+}

@@ -1,7 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
+import './App.css';
+import Login from './screens/login'
+import Home from './screens/home'
+import Profile from './screens/profile'
+import Error from './screens/error'
+import Buy from './screens/buy'
+import Upload from './screens/upload'
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 function App() {
   const [getMessage, setGetMessage] = useState({})
@@ -16,28 +24,18 @@ function App() {
 
   }, [])
 
-  useEffect(()=>{
-  axios.get('https://localhost:5000/paper').then(response => {
-    console.log("SUCCESS", response)
-    //setTitle(res.title);
-    //setAuthor(res.official_author);
-    //setAbstract(res.abstract);
-  }).catch(error => {
-    console.log(error)
-    //navigate("/404");
-  })  
-}, [])
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>React + Flask Tutorial</p>
-        <div>{getMessage.status === 200 ? 
-          <h3>{getMessage.data.message}</h3>
-          :
-          <h3>LOADING</h3>}</div>
-      </header>
+    <div>
+      <Router>
+        <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/upload" element={<Upload />} />
+            <Route path="/buy/:id" element={<Buy />} />
+            <Route path="*" element={<Error />}></Route>
+        </Routes>
+      </Router>
     </div>
   );
 }

@@ -1,0 +1,74 @@
+#login-form {
+    width: 20vw;
+    height: 100vh;
+    padding: 0;
+    text-align: center;
+    font-family: 'Oswald';
+    border-radius: 5px;
+    margin: auto;
+}
+
+#login-title {
+    padding-top: 50%;
+    font-weight: bold;
+}
+
+.input {
+  background-color:white;
+  color:black;
+  border:none;
+  width: 75%;
+  height: 5vh;
+  outline: none;
+  border-radius:15vh;
+  font-size:small;
+  padding-left:15%;
+  font-family: 'Oswald';
+}
+
+#input-email {
+  margin-top: 20px;
+}
+
+#input-password {
+  margin-top: 10px;
+}
+
+#login-submit {
+  margin-top:15px;
+  outline: none;
+  border: none;
+  background-color: black;
+  color: white;
+  height: 5vh;
+  width:50%;
+  border-radius:15vh;
+  font-weight: bold;
+  font-family: 'Oswald';
+  cursor: pointer;  
+  transition: all .2s ease-in-out;
+}
+
+#login-submit:hover {
+  transform: scale(1.1);
+}
+
+#no-account {
+  bottom: 10vh;
+  position: absolute;
+  width: 20%;
+}
+
+#sign-up-wrapper { 
+  bottom:5vh;
+  position: absolute;
+  width: 20%;
+}
+
+#sign-up {
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+  width: max-content;
+  margin: auto;
+}
