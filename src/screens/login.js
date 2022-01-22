@@ -8,7 +8,7 @@ import SignupForm from './registration/signup-form';
 class Login extends React.Component {
     constructor(props) {
         super(props)
-        this.handler = this.handler.bind(this);
+        this.toggle = this.toggle.bind(this);
         this.state = {
             show_login: true
         };
