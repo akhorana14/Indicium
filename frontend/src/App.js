@@ -15,6 +15,19 @@ function App() {
     })
 
   }, [])
+
+  useEffect(()=>{
+  axios.get('https://localhost:5000/paper').then(response => {
+    console.log("SUCCESS", response)
+    //setTitle(res.title);
+    //setAuthor(res.official_author);
+    //setAbstract(res.abstract);
+  }).catch(error => {
+    console.log(error)
+    //navigate("/404");
+  })  
+}, [])
+
   return (
     <div className="App">
       <header className="App-header">

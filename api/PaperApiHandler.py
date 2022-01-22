@@ -1,26 +1,30 @@
-
 from flask_restful import Api, Resource, reqparse
-
-class HelloApiHandler(Resource):
+from .GET_functions import *
+from .POST_functions import *
+class PaperApiHandler(Resource):
   def get(self):
+    parser = reqparse.RequestParser()
+    parser.add_argument('id', type=int)
+    args = parser.parse_args()
+    print(args)
+    
+    paper = getPaper(args['id'])
+
     return {
       'resultStatus': 'SUCCESS',
-      'message': "Hello Api Handler"
+      'paper': paper
       }
 
   def post(self):
     print(self)
     parser = reqparse.RequestParser()
-    parser.add_argument('type', type=str)
-    parser.add_argument('message', type=str)
-
+    parser.add_argument('id', type=int)
     args = parser.parse_args()
 
     print(args)
     # note, the post req from frontend needs to match the strings here (e.g. 'type and 'message')
 
-    request_type = args['type']
-    request_json = args['message']
+    request_id = args['id']
     # ret_status, ret_msg = ReturnData(request_type, request_json)
     # currently just returning the req straight
     ret_status = request_type
@@ -34,3 +38,4 @@ class HelloApiHandler(Resource):
     final_ret = {"status": "Success", "message": message}
 
     return final_ret
+
