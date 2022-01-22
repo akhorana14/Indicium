@@ -51,10 +51,11 @@ class gcp_interface(object):
             return None
         user_id = self.generate_unique_user_id()
         papersOwned = ""
-        query = "INSERT INTO {} (id, username, papers_owned, password) VALUES ({}, '{}', '{}', '{}')".format(self.table_id["user"], user_id, username, papersOwned, password)
+        wallet = "0"
+        query = "INSERT INTO {} (id, username, password, papers_owned, wallet) VALUES ({}, '{}', '{}', '{}', '{}')".format(self.table_id["user"], user_id, username, password, papersOwned, wallet)
         query_job = self.client.query(query)
         query_job.result()
-        return User(user_id, username, papersOwned, password)
+        return User(user_id, username, papersOwned, password, wallet)
 
     def get_paper(self, id: int) -> Paper:
         query = "SELECT * FROM {} WHERE id = {}".format(self.table_id["paper"], id)
@@ -70,5 +71,13 @@ class gcp_interface(object):
         query = "SELECT abstract FROM {} WHERE id = {}".format(self.table_id["paper"], id)
         query_job = self.client.query(query)
         return query_job.result().rows[0][0]
+
+    def login_user(self, username: str, password: str) -> bool:
+        query = "SELECT * FROM {} WHERE username = '{}' AND password = '{}'".format(self.table_id["user"], username, password)
+        query_job = self.client.query(query)
+        # if no user exists with that username and password return None
+        if query_job.result().total_rows == 0:
+            return None
+        return User(query_job.result().rows[0][0], query_job.result().rows[0][1], query_job.result().rows[0][2], query_job.result().rows[0][3], query_job.result().rows[0][4])
 
     
