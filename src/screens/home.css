@@ -4,7 +4,7 @@
 }
 
 #title {
-    font-size: 150px;
+    font-size: 75px;
     text-align: center;
     padding-top:5vh;
 
@@ -12,16 +12,17 @@
 
 #title::selection {
     background:  #dddddd ;
-  }
-  #title::-moz-selection {
+}
+
+#title::-moz-selection {
     background:  #dddddd ; 
-  }
+}
   
 
-  #home-page {
+#home-page {
     width: 75vw;
     text-align: center;
     font-family: 'Oswald';
     border-radius: 5px;
     margin: auto;
-  }
+}
