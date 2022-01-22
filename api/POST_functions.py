@@ -16,3 +16,12 @@ def create(email, password):
     user = User(username = email, password = password, papers_owned = 0)
     # POST to database
     return user
+
+def createResearchPaper(author, pdf, abstract, numTokens):
+    for (int i = 0; i < numTokens; i++):
+        paper = Paper(official_author = author, desciption = abstract, current_owner = author)
+        #query to database
+
+def getAbstract(uniqueid):
+    #query using id
+    return paper.abstract
