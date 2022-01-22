@@ -1,4 +1,5 @@
 import './buy.css'
+import { useParams } from 'react-router-dom'
 
 function buy() {
     console.log("Buying paper");
@@ -11,7 +12,7 @@ function Author(name) {
 }
 
 function Buy() {
-
+    const { id } = useParams();
     return (
         <div id="buy-background">
             <div id="buy-view"> 
@@ -20,6 +21,7 @@ function Buy() {
                 </div>
                 <div id="buy-authors">
                     {Author("Dr. Arjun Khorana")}, {Author("Dr. Abhinav Dusi")}, {Author("Dr. Jacob Zietek")}
+                    {id}
                 </div>
                 <div id="buy-abstract"> 
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
