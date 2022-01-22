@@ -6,7 +6,7 @@ class Home extends React.Component {
     render() {
         return (
                 <div id="background">
-                    HOME PAGE
+                    <div id="title">Indicium</div>
                 </div>
         )
     }

@@ -4,3 +4,19 @@
     height: 100vh;
     font-family: 'Oswald';
 }
+
+#title {
+    font-size: 150px;
+    text-align: center;
+    padding-top:5vh;
+
+}
+
+
+#title::selection {
+    background:  #dddddd ;
+  }
+  #title::-moz-selection {
+    background:  #dddddd ; 
+  }
+  
