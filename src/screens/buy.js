@@ -22,7 +22,7 @@ function Buy() {
     let navigate = useNavigate()
 
     useEffect(() => {
-        // Make fetch request
+        /*
         axios({
             method: 'get',
             url: `https://localhost:5000/paper/id=${id}`,
@@ -34,6 +34,12 @@ function Buy() {
             console.log(error);
             navigate("/404");
         })
+        */
+
+
+        setTitle("Test Title");
+        setAuthor("Test Author");
+        setAbstract("Test Abstract");
     });
 
     return (
