@@ -2,6 +2,7 @@ from random import random
 from google.cloud import bigquery
 from User import User
 from Paper import Paper
+import os
 
 
 """
@@ -21,6 +22,7 @@ query =
 class gcp_interface(object):
 
     def __init__(self):
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'MaskMandator-a0512b925076.json'
         self.client = bigquery.Client()
         self.table_id = {"paper": "indicium-339016:purdue.papers", "user": "indicium-339016:purdue.users"}
 
@@ -44,7 +46,6 @@ class gcp_interface(object):
             random_id = int(random() * 100000)
         return random_id
 
-
     def create_user(self, username: str, password: str) -> User:
         if self.user_exits(username):
             return None
@@ -56,7 +57,18 @@ class gcp_interface(object):
         return User(user_id, username, papersOwned, password)
 
     def get_paper(self, id: int) -> Paper:
-        return Paper()
+        query = "SELECT * FROM {} WHERE id = {}".format(self.table_id["paper"], id)
+        query_job = self.client.query(query)
+        return Paper(query_job.result().rows[0][0], query_job.result().rows[0][1], query_job.result().rows[0][2], query_job.result().rows[0][3], query_job.result().rows[0][4], query_job.result().rows[0][5], query_job.result().rows[0][6], query_job.result().rows[0][7], query_job.result().rows[0][8])
 
+    def get_all_papers(self) -> List[Paper]:
+        query = "SELECT * FROM {}".format(self.table_id["paper"])
+        query_job = self.client.query(query)
+        return [Paper(row[0], row[1], row[2], row[3], row[4], row[5].split(" "), row[6], row[7], row[8]) for row in query_job.result().rows]
+
+    def get_paper_abstract(self, id: int) -> str:
+        query = "SELECT abstract FROM {} WHERE id = {}".format(self.table_id["paper"], id)
+        query_job = self.client.query(query)
+        return query_job.result().rows[0][0]
 
     

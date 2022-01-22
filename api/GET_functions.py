@@ -5,19 +5,12 @@ from common import *
 gcp = gcp_interface()
 
 def GetResearchPaperList():
-    # Gets all research paper data from the database
-
-    data = []
-
-    #data = getArrayOfDictsFromSQLQuery
-
-    return data
+    return gcp.get_all_papers()
 
 
 def GetAbstract(id: int):
     # Gets the abstract of a paper from the database
-
-    return 0
+    return gcp.get_paper_abstract(id)
 
 
 
