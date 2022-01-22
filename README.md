@@ -1,3 +1,4 @@
+
 ## Inspiration
 With the growing number of brilliant minds forgoing academia in search for more sustainable options, our knowledge and curiosity are cast aside in our society. We aim to strike a balance between money and research to reincentivize researching while making a monetarily sustainable path those pursuing academia.
 ## What it does
@@ -16,3 +17,4 @@ Abhinav: I centered divs.
 Akash: I centered divs.
 ## What's next for Indicium
 Although some advanced key features of our project are not completely polished, we believe that Indicium has a place in the future of research. We wish to host our application as well as attempt to make a business model for earning a small amount of revenue from our application.
+
