@@ -2,19 +2,38 @@
 import './login.css';
 import React from 'react'
 
+import LoginForm from './registration/login-form'
+import SignupForm from './registration/signup-form';
+
 class Login extends React.Component {
+    constructor(props) {
+        super(props)
+        this.handler = this.handler.bind(this);
+        this.state = {
+            show_login: true
+        };
+    }
+
+    toggle() {
+        this.setState({
+            show_login: !this.state.show_login
+        });
+    }
+
     render() {
-        return (
-            <div id="background">
-                <div id="login-form">
-                    <div id="login-title">
-                        Login with email
-                    </div>
-                    <input type="text" id="input-email" class="input" placeholder="Email" />
-                    <input type="text" id="input-password" class="input" placeholder="Password" />
+        if (this.state.show_login) {
+            return (
+                <div id="background">
+                    <LoginForm toggle={this.toggle}></LoginForm>
                 </div>
-            </div>
-        )
+            )
+        } else {
+            return (
+                <div id="background">
+                    <SignupForm toggle={this.toggle}></SignupForm>
+                </div>
+            )
+        }
     }
 }
 
