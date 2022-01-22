@@ -19,7 +19,7 @@ class LoginForm extends React.Component {
     }
 
     goHome() {
-        //this.navigate("/home", { replace: true });
+        window.location.pathname = '/home';
     }
 }
 
