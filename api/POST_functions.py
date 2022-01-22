@@ -5,34 +5,20 @@ from common import gcp_interface
 gcp = gcp_interface()
 
 def login(username, password):
-    # query database
-    # GET from query when == username && == password
-    user = User(username)
+    user = gcp.loginUser(username, password)
     if (user == None):
         return 1
-
-    return 0 #return 1 if there's an error
+    return user 
 
 def create_user(username, password):
-    
-    exits = False
+    user = gcp.createUser(username, password)
+    return user if user else 1
 
-    user = None
-
-    # exits = gcp.userExits(username)
-
-    # if exits: return 1
-
-    # create user in database with unique ID and no papers owned
-    # user = gcp.createUser(username, password)
-
-    return user if user else 0
-
-def createResearchPaper(author, pdf, abstract, num_papers):
-    # TODO lol, idk off the top of my head how to do this 
-    return 0
+def createResearchPaper(author_id, title, link, abstract, num_papers):
+    return gcp.create_paper(author_id, title, link, abstract, num_papers)    
 
 def getAbstract(id):
-    #query using id
-    # return gcp.getPaper(uniqueid).abstract
-    return 0
+    return gcp.get_paper_abstract(id)
+
+def getPaper(id):
+    return gcp.get_paper(id)
