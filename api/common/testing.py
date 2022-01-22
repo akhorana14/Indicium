@@ -8,7 +8,10 @@ def main():
     gcp = gcp_interface()
 
     # test all gcp functions
-    
+
+    u = gcp.create_user("jzietek", "pw123")
+    print(u)
+
     
 
     return 0

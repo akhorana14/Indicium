@@ -2,6 +2,7 @@ from random import random
 from google.cloud import bigquery
 from User import User
 from Paper import Paper
+from typing import List
 import os
 
 
@@ -22,9 +23,9 @@ query =
 class gcp_interface(object):
 
     def __init__(self):
-        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'MaskMandator-a0512b925076.json'
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"/Users/jacobzietek/Downloads/indicium-339016-6890be5f9725.json"
         self.client = bigquery.Client()
-        self.table_id = {"paper": "indicium-339016:purdue.papers", "user": "indicium-339016:purdue.users"}
+        self.table_id = {"paper": "indicium-339016.purdue.papers", "user": "indicium-339016.purdue.users"}
 
     def get_query_results(self, query):
         query_job = self.client.query(query)
@@ -58,7 +59,7 @@ class gcp_interface(object):
         user_id = self.generate_unique_user_id()
         papersOwned = ""
         wallet = "0"
-        query = "INSERT INTO {} (id, username, password, papers_owned, wallet) VALUES ({}, '{}', '{}', '{}', '{}')".format(self.table_id["user"], user_id, username, password, papersOwned, wallet)
+        query = "INSERT INTO {} (id, username, password, papersOwned, wallet) VALUES ({}, '{}', '{}', '{}', '{}')".format(self.table_id["user"], user_id, username, password, papersOwned, wallet)
         query_job = self.client.query(query)
         query_job.result()
         return User(user_id, username, papersOwned, password, wallet)
