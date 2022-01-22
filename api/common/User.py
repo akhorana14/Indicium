@@ -5,7 +5,6 @@ class User(object):
         self.username = username
         self.papers_owned = papers_owned
         self.password = password
-        pass
 
     def get_dict(self):
         return {
@@ -14,5 +13,4 @@ class User(object):
             'papers_owned': self.papers_owned,
             'password': self.password
         }
-        pass
     

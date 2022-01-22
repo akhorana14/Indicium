@@ -12,7 +12,6 @@ class Paper(object):
         self.is_on_sale = is_on_sale
         self.price = price
         self.link_to_paper = link_to_paper
-        pass
 
     def get_dict(self):
         return {
@@ -26,6 +25,5 @@ class Paper(object):
             'price': self.price,
             'link_to_paper': self.link_to_paper
         }
-        pass
 
     
