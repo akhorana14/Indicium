@@ -11,5 +11,9 @@ api = Api(app)
 @app.route("/", defaults={'path':''})
 def serve(path):
     return send_from_directory(app.static_folder,'index.html')
-
-api.add_resource(HelloApiHandler, '/flask/hello')
+try:
+    api.add_resource(HelloApiHandler, '/flask/hello')
+    from api.PaperApiHandler import PaperApiHandler
+    api.add_resource(PaperApiHandler, '/paper')
+except Exception as e:
+    print(e)

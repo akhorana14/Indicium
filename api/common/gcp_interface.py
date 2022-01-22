@@ -1,7 +1,7 @@
 from random import random
 from google.cloud import bigquery
-from User import User
-from Paper import Paper
+from .User import User
+from .Paper import Paper
 import os
 
 

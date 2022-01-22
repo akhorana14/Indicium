@@ -7,12 +7,24 @@ function App() {
   const [getMessage, setGetMessage] = useState({})
 
   useEffect(()=>{
-    axios.get('http://localhost:5000/flask/hello').then(response => {
+    axios.get('http://127.0.0.1:5000/flask/hello').then(response => {
       console.log("SUCCESS", response)
       setGetMessage(response)
     }).catch(error => {
       console.log(error)
     })
+    axios({
+      method: 'get',
+      url: 'https://127.0.0.1:5000/paper/id=${id}',
+  }).then( res => {
+      //setTitle(res.title);
+      //setAuthor(res.official_author);
+      //setAbstract(res.abstract);
+      console.log(res);
+  }).catch(error => {
+      console.log(error);
+      //navigate("/404");
+  })
 
   }, [])
   return (
