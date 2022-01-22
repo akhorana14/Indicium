@@ -45,6 +45,12 @@
   border-radius:15vh;
   font-weight: bold;
   font-family: 'Verdana';
+  cursor: pointer;  
+  transition: all .2s ease-in-out;
+}
+
+#login-submit:hover {
+  transform: scale(1.1);
 }
 
 #no-account {
