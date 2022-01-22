@@ -11,7 +11,7 @@ class User(object):
         return {
             'id': self.id,
             'username': self.username,
-            'fullname': self.fullname
+            'fullname': self.fullname,
             'papers_owned': self.papers_owned,
             'password': self.password
         }

@@ -27,7 +27,7 @@ class Paper(object):
         }
     
     def login(username, password):
-        
+        return 0
 
 
     
