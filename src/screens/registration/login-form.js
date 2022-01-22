@@ -18,7 +18,9 @@ function LoginForm(props) {
             <input type="password" id="input-password" className="input" placeholder="Password" />
             <button id="login-submit" onClick={goHome}>LOG IN</button>
             <div id="no-account">Don't have an account?</div>
-            <div id="sign-up" onClick={props.toggle}>SIGN UP NOW</div>
+            <div id="sign-up-wrapper">
+                <div id="sign-up" onClick={props.toggle}>SIGN UP NOW</div>
+            </div>
         </div>
     )
 }

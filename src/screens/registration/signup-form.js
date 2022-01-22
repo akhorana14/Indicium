@@ -20,7 +20,9 @@ function SignupForm(props) {
             <input type="password" id="input-password-2" className="input" placeholder="Retype password" />
             <button id="signup-submit" onClick={goHome}>SIGN UP</button>
             <div id="no-account">Already have an account?</div>
-            <div id="sign-up" onClick={props.toggle}>LOG IN NOW</div>
+            <div id="log-in-wrapper">
+                <div id="log-in" onClick={props.toggle}>LOG IN NOW</div>
+            </div>
         </div>
     )
 }

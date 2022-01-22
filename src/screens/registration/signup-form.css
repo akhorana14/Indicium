@@ -62,12 +62,17 @@
   width: 20%;
 }
 
-#log-in {
-  position: relative;
-  font-weight: bold;
-  text-decoration: underline;
-  cursor: pointer;
+
+#log-in-wrapper { 
   bottom:5vh;
   position: absolute;
   width: 20%;
+}
+
+#log-in {
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+  width: max-content;
+  margin: auto;
 }
