@@ -21,6 +21,21 @@ function Home() {
                 author: 'Dr. Arjun \'Bezos Beta\' Khorana',
                 id: 3
             },
+            {
+                title: 'The effect of dielectric environment on the neutral and charged dark excitons in WSe2 monolayer',
+                author: 'Dr. Arjun \'Bezos Beta\' Khorana',
+                id: 4
+            }, 
+            {
+                title: 'Article 2',
+                author: 'Dr. Arjun \'Bezos Beta\' Khorana',
+                id: 5
+            },
+            {
+                title: 'Article 3',
+                author: 'Dr. Arjun \'Bezos Beta\' Khorana',
+                id: 6
+            }
         ];
         return (
                 <div id="background">

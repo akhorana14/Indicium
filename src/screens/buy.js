@@ -25,7 +25,7 @@ function Buy() {
         // Make fetch request
         axios({
             method: 'get',
-            url: `https://localhost:5000/paper/${id}`,
+            url: `https://localhost:5000/paper/id=${id}`,
         }).then( res => { 
             setTitle(res.title);
             setAuthor(res.official_author);
