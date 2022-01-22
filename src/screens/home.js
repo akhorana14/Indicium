@@ -5,9 +5,9 @@ import React from 'react'
 class Home extends React.Component {
     render() {
         return (
-                <div id="background">
-                    <div id="title">Indicium</div>
-                </div>
+            <div id="background">
+                <div id="title">Indicium</div>
+            </div>
         )
     }
 }
