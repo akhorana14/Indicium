@@ -57,7 +57,9 @@
 }
 
 #have-account {
-  margin-top: 40vh;
+  bottom: 10vh;
+  position: absolute;
+  width: 20%;
 }
 
 #log-in {
@@ -65,5 +67,7 @@
   font-weight: bold;
   text-decoration: underline;
   cursor: pointer;
-  margin-top:5px;
+  bottom:5vh;
+  position: absolute;
+  width: 20%;
 }
