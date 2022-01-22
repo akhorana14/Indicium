@@ -5,7 +5,7 @@ import React from 'react'
 class Home extends React.Component {
     render() {
         return (
-                <div id="login-form">
+                <div id="background">
                     HOME PAGE
                 </div>
         )
