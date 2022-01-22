@@ -1,6 +1,6 @@
-from common import Paper
-from common import User
-from common import gcp_interface
+from .common.Paper import Paper
+from .common.User import User
+from .common.gcp_interface import gcp_interface
 
 gcp = gcp_interface()
 
