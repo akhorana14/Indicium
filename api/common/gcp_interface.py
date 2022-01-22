@@ -63,13 +63,13 @@ class gcp_interface(object):
         query_job.result()
         return User(user_id, username, papersOwned, password, wallet)
 
-    def create_paper(self, author: str, title: str, link: str, abstract: str, num_papers: int) -> int:
+    def create_paper(self, author_id: str, title: str, link: str, abstract: str, num_papers: int) -> int:
         ids = []
         title = title
         abstract = abstract
-        official_author = author
-        current_owner = author
-        previous_owners = " ".join([author])
+        official_author = author_id
+        current_owner = author_id
+        previous_owners = " ".join([author_id])
         is_on_sale = False
         price = "0.00"
         link = link
@@ -83,7 +83,7 @@ class gcp_interface(object):
     def get_paper(self, id: int) -> Paper:
         query = "SELECT * FROM {} WHERE id = {}".format(self.table_id["paper"], id)
         query_job = self.client.query(query)
-        return Paper(query_job.result().rows[0][0], query_job.result().rows[0][1], query_job.result().rows[0][2], query_job.result().rows[0][3], query_job.result().rows[0][4], query_job.result().rows[0][5], query_job.result().rows[0][6], query_job.result().rows[0][7], query_job.result().rows[0][8])
+        return Paper(query_job.result().rows[0][0], query_job.result().rows[0][1], query_job.result().rows[0][2], query_job.result().rows[0][3], query_job.result().rows[0][4], query_job.result().rows[0][5].split(" "), query_job.result().rows[0][6], query_job.result().rows[0][7], query_job.result().rows[0][8])
 
     def get_all_papers(self) -> List[Paper]:
         query = "SELECT * FROM {}".format(self.table_id["paper"])
