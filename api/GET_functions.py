@@ -13,5 +13,7 @@ def GetAbstract(id: int):
     return gcp.get_paper_abstract(id)
 
 
-
+def GetUser(id: int):
+    # Gets the user from the database
+    return gcp.get_user(id)
 
