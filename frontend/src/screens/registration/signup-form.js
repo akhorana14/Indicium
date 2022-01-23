@@ -8,6 +8,7 @@ import { useState } from 'react'
 function SignupForm(props) {
     let navigate = useNavigate();
     useEffect(() => {
+        console.log(document.cookie)
     }); 
 
     const [username, setUsername] = useState("");
