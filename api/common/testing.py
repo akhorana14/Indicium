@@ -18,7 +18,7 @@ def main():
 
     #print(gcp.get_paper(4796))
 
-    print(gcp.get_all_papers())
+    print(gcp.get_paper(839))
 
     
 
