@@ -47,10 +47,14 @@ def user_signup():
     # return {"hi": "hi"}
 
 @app.route("/user_login", methods=['POST'])
-def user_login(username, password):
+def user_login():
+    request_body = request.get_json()
+    print(request_body)
+    username = request_body['username']
+    password = request_body['password']
     user = login(username, password)
     if (user == 1):
-        return 1
+        return {'data': 'Failed'}
     return user.get_dict()
 
 @app.route("/create_paper", methods=['POST'])

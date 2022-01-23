@@ -23,7 +23,7 @@ query =
 class gcp_interface(object):
 
     def __init__(self):
-        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"/Users/abhinavdusi/Desktop/indicium-339016-6890be5f9725.json"
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"/home/akash/Downloads/indicium-339016-6890be5f9725.json"
         self.client = bigquery.Client()
         self.table_id = {"paper": "indicium-339016.purdue.papers", "user": "indicium-339016.purdue.users"}
 
@@ -120,7 +120,10 @@ class gcp_interface(object):
         # if no user exists with that username and password return None
         if query_job.result().total_rows == 0:
             return None
-        return User(query_job[0][0], query_job[0][1], query_job[0][2], query_job[0][3], query_job[0][4])
+        
+
+        for row in query_job:
+            return User(row[0], row[1], row[2], row[3], row[4])
 
     # get all papers that are marked is_on_sale from database and return a list of paper objects
     def get_all_on_sale_papers(self) -> List[Paper]:
