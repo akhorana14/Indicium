@@ -1,8 +1,8 @@
 from ast import Str
 from random import random
 from google.cloud import bigquery
-from .User import User
-from .Paper import Paper
+from User import User
+from Paper import Paper
 from typing import List
 import os
 
@@ -24,7 +24,7 @@ query =
 class gcp_interface(object):
 
     def __init__(self):
-        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"/home/akash/Downloads/indicium-339016-6890be5f9725.json"
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"/Users/jacobzietek/Downloads/indicium-339016-6890be5f9725.json"
         self.client = bigquery.Client()
         self.table_id = {"paper": "indicium-339016.purdue.papers", "user": "indicium-339016.purdue.users"}
 
@@ -86,9 +86,7 @@ class gcp_interface(object):
         for i in range(num_papers):
             id = self.generate_unique_paper_id()
             ids.append(id)
-            print(official_author)
             query = "INSERT INTO {} (id, title, abstract, official_author, current_owner, previous_owners, is_on_sale, price, link) VALUES ({}, '{}', '{}', {}, {}, '{}', '{}', '{}', '{}')".format(self.table_id["paper"], id, title, abstract, official_author, current_owner, previous_owners, is_on_sale, price, link)
-            print (query)
             query_job = self.client.query(query)
             query_job.result()
         return ids
@@ -133,31 +131,31 @@ class gcp_interface(object):
         return [Paper(row[0], row[1], row[2], row[3], row[4], row[5].split(" "), row[6], row[7], row[8]) for row in query_job]
 
 
-    #given a username increment the wallet by a given amount
-    #take the username's wallet, cast it to a float, add the amount, cast it back to a string,
+    #given a id increment the wallet by a given amount
+    #take the id's wallet, cast it to a float, add the amount, cast it back to a string,
     # and update the user's wallet in the database
-    def increment_wallet(self, username: str, amount: float) -> bool:
-        query = "SELECT wallet FROM {} WHERE username = '{}'".format(self.table_id["user"], username)
+    def increment_wallet(self, id: int, amount: float) -> bool:
+        query = "SELECT wallet FROM {} WHERE id = {}".format(self.table_id["user"], id)
         query_job = self.client.query(query)
         for row in query_job:
-            wallet = float(row[4])
+            wallet = float(row[0])
             wallet += amount
-            query = "UPDATE {} SET wallet = '{}' WHERE username = '{}'".format(self.table_id["user"], str(wallet), username)
+            query = "UPDATE {} SET wallet = '{}' WHERE id = {}".format(self.table_id["user"], str(wallet), id)
             query_job = self.client.query(query)
             query_job.result()
             return True
         return False
 
-    #given a username decrement the wallet by a given amount
-    #take the username's wallet, cast it to a float, add the amount, cast it back to a string,
+    #given a id decrement the wallet by a given amount
+    #take the id's wallet, cast it to a float, add the amount, cast it back to a string,
     # and update the user's wallet in the database
-    def decrement_wallet(self, username: str, amount: float) -> bool:
-        query = "SELECT wallet FROM {} WHERE username = '{}'".format(self.table_id["user"], username)
+    def decrement_wallet(self, id: int, amount: float) -> bool:
+        query = "SELECT wallet FROM {} WHERE id = {}".format(self.table_id["user"], id)
         query_job = self.client.query(query)
         for row in query_job:
-            wallet = float(row[4])
+            wallet = float(row[0])
             wallet -= amount
-            query = "UPDATE {} SET wallet = '{}' WHERE username = '{}'".format(self.table_id["user"], str(wallet), username)
+            query = "UPDATE {} SET wallet = '{}' WHERE id = {}".format(self.table_id["user"], str(wallet), id)
             query_job = self.client.query(query)
             query_job.result()
             return True
@@ -171,18 +169,17 @@ class gcp_interface(object):
         paper = self.get_paper(paper_id)
         seller_id = paper.current_owner
         # if buyer balance is less than paper price return false
-        if self.get_user(buyer_id).wallet < paper.price:
+        if float(self.get_user(buyer_id).wallet) < float(paper.price):
             return False
         if paper.current_owner == buyer_id:
             return False
         query = "UPDATE {} SET current_owner = {}, previous_owners = CONCAT(previous_owners, ' ', '{}'), is_on_sale = 'False', price = '{}' WHERE id = {}".format(self.table_id["paper"], buyer_id, buyer_id, paper.price, paper_id)
         query_job = self.client.query(query)
-        if query_job.result().total_rows > 0:
-            self.increment_wallet(paper.official_author, float(paper.price) * 0.05)
-            self.increment_wallet(seller_id, float(paper.price) * 0.95)
-            self.decrement_wallet(buyer_id, float(paper.price))
-            return True
-        return False
+        self.increment_wallet(paper.official_author, float(paper.price) * 0.05)
+        self.increment_wallet(seller_id, float(paper.price) * 0.95)
+        self.decrement_wallet(buyer_id, float(paper.price))
+        return True
+
 
     #delete all duplicate users from the database
     def delete_duplicate_users(self) -> None:

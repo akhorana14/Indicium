@@ -19,7 +19,9 @@ def main():
     #print(gcp.get_paper(4796))
 
     #gcp.make_paper_for_sale(839)
-    gcp.set_all_user_wallets()
+    #gcp.set_all_user_wallets()
+
+    print(gcp.buy_paper(839, 4669))
 
     
 

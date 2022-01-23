@@ -28,6 +28,18 @@ class Paper(object):
             'price': self.price,
             'link': self.link
         }
+
+    #write print function
+    def print_paper(self):
+        print("Paper ID: ", self.id)
+        print("Title: ", self.title)
+        print("Abstract: ", self.abstract)
+        print("Official Author: ", self.official_author)
+        print("Current Owner: ", self.current_owner)
+        print("Previous Owners: ", self.previous_owners)
+        print("Is On Sale: ", self.is_on_sale)
+        print("Price: ", self.price)
+        print("Link: ", self.link)
     
     def login(username, password):
         return 0
