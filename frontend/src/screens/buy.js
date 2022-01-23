@@ -34,7 +34,7 @@ function Buy() {
             setPrice(res.price);
         }).catch(error => {
             console.log(error);
-            navigate("/404");
+            //navigate("/404");
         })
         
 

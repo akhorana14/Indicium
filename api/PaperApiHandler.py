@@ -1,20 +1,19 @@
 from flask_restful import Api, Resource, reqparse
-#from .GET import 
-#from .POST_functions import *
+from .POST_functions import *
+from .GET_functions import *
 
 class PaperApiHandler(Resource):
   def get(self):
-    # parser = reqparse.RequestParser()
-    # parser.add_argument('id', type=int)
-    # args = parser.parse_args()
-    # print(args)
-    
-    # paper = getPaper(args['id'])S
+    parser = reqparse.RequestParser()
+    parser.add_argument('id', type=int)
+    args = parser.parse_args()
+    print(args, args['id'])  
+    paper = getPaper(args['id'])
 
     return {
-      'resultStatus': 'SUCCESS'
-      #'paper': paper.get_dict()
-      }
+      'resultStatus': 'SUCCESS',
+      'paper': paper.get_dict()
+    }
   
   def post(self):
     print(self)
