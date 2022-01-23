@@ -3,11 +3,6 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function PaperRow(props) {
-    let navigate = useNavigate();
-
-    function handleClick() {
-        navigate(`/buy/${props.paper.id}`);
-    }
 
     return (
         <div className="rows" key={props.index} onClick={handleClick}>
