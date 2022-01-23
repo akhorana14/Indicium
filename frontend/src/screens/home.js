@@ -15,8 +15,8 @@ function Home() {
             method: 'get',
             url: `http://localhost:5000/get_all_on_sale_papers`,
         }).then( res => { 
-            papers = res.data;
-            console.log(res);
+            setPapers(res.data);
+            console.log(res.data.data);
         }).catch(error => {
             console.log(error);
         })

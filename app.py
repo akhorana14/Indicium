@@ -18,12 +18,12 @@ def serve(path):
 
 
 @app.route("/paper/id=<int:id>", methods=['GET'])
-def displayOnSalePapers(id):
+def displayPaper(id):
     return getPaper(id).get_dict()
 
 @app.route("/get_all_on_sale_papers", methods=['GET'])
-def displayPaper():
-    return [x.get_dict() for x in gcp.get_all_on_sale_papers()]
+def displayOnSalePapers():
+    return {"data": [x.get_dict() for x in gcp.get_all_on_sale_papers()]}
 
 @app.route("/user/id=<int:id>", methods=['GET'])
 def displayUser(id):
