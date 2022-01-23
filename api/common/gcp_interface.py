@@ -23,7 +23,8 @@ query =
 class gcp_interface(object):
 
     def __init__(self):
-        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"C:\Users\akhor\Downloads\indicium-339016-6890be5f9725.json"
+        #os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"C:\Users\akhor\Downloads\indicium-339016-6890be5f9725.json"
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"/Users/jacobzietek/Downloads/indicium-339016-6890be5f9725.json"
         self.client = bigquery.Client()
         self.table_id = {"paper": "indicium-339016.purdue.papers", "user": "indicium-339016.purdue.users"}
 
@@ -71,10 +72,8 @@ class gcp_interface(object):
 
     def create_paper(self, author_id: int, title: str, link: str, abstract: str, num_papers: int) -> int:
         ids = []
-
         if not self.user_id_exits(author_id):
             return None
-
         title = title
         abstract = abstract
         official_author = author_id
@@ -99,6 +98,12 @@ class gcp_interface(object):
         for row in query_job:
             return Paper(row[0], row[1], row[2], row[3], row[4], row[5].split(" "), row[6], row[7], row[8])
 
+    def get_user(self, id: int) -> User:
+        query = "SELECT * FROM {} WHERE id = {}".format(self.table_id["user"], id)
+        query_job = self.client.query(query)
+        for row in query_job:
+            return User(row[0], row[1], row[2], row[3], row[4])
+
     def get_all_papers(self) -> List[Paper]:
         query = "SELECT * FROM {}".format(self.table_id["paper"])
         query_job = self.client.query(query)
@@ -122,3 +127,36 @@ class gcp_interface(object):
         query = "SELECT * FROM {} WHERE is_on_sale = True".format(self.table_id["paper"])
         query_job = self.client.query(query)
         return [Paper(row[0], row[1], row[2], row[3], row[4], row[5].split(" "), row[6], row[7], row[8]) for row in query_job]
+
+
+    #given a username increment the wallet by a given amount
+    def increment_wallet(self, username: str, amount: float) -> bool:
+        query = "UPDATE {} SET wallet = wallet + {} WHERE username = '{}'".format(self.table_id["user"], amount, username)
+        query_job = self.client.query(query)
+        return query_job.result().total_rows > 0
+
+    #given a username decrement the wallet by a given amount
+    def decrement_wallet(self, username: str, amount: float) -> bool:
+        query = "UPDATE {} SET wallet = wallet - {} WHERE username = '{}'".format(self.table_id["user"], amount, username)
+        query_job = self.client.query(query)
+        return query_job.result().total_rows > 0
+
+    # given a paper id and a buyer user id, update the current owner of the paper to the buyer user id, 
+    # add the buyer id to the previous owners list, and set the is_on_sale to false,
+    # and decrement the buyer's wallet by the price of the paper, and increment the seller's wallet by 95% price of the paper
+    # and increment the paper's official author's wallet by 5% of the price of the paper
+    def buy_paper(self, paper_id: int, buyer_id: int) -> bool:
+        paper = self.get_paper(paper_id)
+        seller_id = paper.current_owner
+        if paper.current_owner == buyer_id:
+            return False
+        query = "UPDATE {} SET current_owner = {}, previous_owners = CONCAT(previous_owners, ' ', '{}'), is_on_sale = False, price = '{}' WHERE id = {}".format(self.table_id["paper"], buyer_id, buyer_id, paper.price, paper_id)
+        query_job = self.client.query(query)
+        if query_job.result().total_rows > 0:
+            self.increment_wallet(paper.official_author, float(paper.price) * 0.05)
+            self.increment_wallet(seller_id, float(paper.price) * 0.95)
+            self.decrement_wallet(buyer_id, float(paper.price))
+            return True
+        return False
+
+        
