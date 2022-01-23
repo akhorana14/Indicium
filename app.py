@@ -25,6 +25,10 @@ def displayPaper(id):
 def displayOnSalePapers():
     return {"data": [x.get_dict() for x in gcp.get_all_on_sale_papers()]}
 
+@app.route("/get_profile_papers/id=<int:id>", methods=['GET'])
+def getProfilePapers(id):
+    return {"data": [x.get_dict() for x in gcp.get_all_papers_owned_by_user(id)]}
+
 @app.route("/user/id=<int:id>", methods=['GET'])
 def displayUser(id):
     return GetUser(id).get_dict()
