@@ -51,7 +51,7 @@ function Profile() {
                 console.log(error);
             })
         }
-    });
+    }, [setBusy, setPapers]);
 
         return (
                 <div id="background">

@@ -7,11 +7,16 @@ function buy() {
     console.log("Buying paper");
 }
 
+function sell() {
+    console.log("Selling paper");
+}
+
 function Author(name) {
     return (
         <span>{name}</span>
     );
 }
+
 
 function Buy() {
     const { id } = useParams();
@@ -21,6 +26,7 @@ function Buy() {
     const [price, setPrice] = useState(0.00);
 
     let navigate = useNavigate()
+
 
     useEffect(() => {
         axios({
@@ -39,6 +45,10 @@ function Buy() {
         
     });
 
+    function ifOwned() {
+        return false;
+    }
+
     return (
         <div id="buy-background">
             <div id="buy-view"> 
@@ -51,8 +61,20 @@ function Buy() {
                 <div id="buy-abstract"> 
                     {abstract}
                 </div>
-                <button id="buy-button" onClick={buy}>BUY ${Number(price).toFixed(2)}</button>
-            </div>
+                {
+                    ifOwned() ? 
+                    (<button id="buy-button" onClick={buy}>BUY ${Number(price).toFixed(2)}</button>) : 
+                    (
+                        <div>
+                       <input type="text" id="input-sell"
+                        placeholder="Sell price"
+                        onChange = {e => setPrice(e.target.value)}/>
+                        <br />
+                        <button id="sell-button" onClick={sell}>SELL </button>
+                        </div>
+                    )
+                }
+        </div>
         </div>
     );
 }
