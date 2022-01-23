@@ -185,12 +185,9 @@ class gcp_interface(object):
         query = "UPDATE {} SET is_on_sale = 'True' WHERE id = {}".format(self.table_id["paper"], paper_id)
         query_job = self.client.query(query)
         return query_job.result().total_rows > 0
-<<<<<<< HEAD
 
     # set all user wallets to "100.00" where the user's current balance is < 100
     def set_all_user_wallets(self) -> None:
         query = "UPDATE {} SET wallet = '100.00' WHERE wallet < '100.00'".format(self.table_id["user"])
         query_job = self.client.query(query)
         query_job.result()
-=======
->>>>>>> fae98a1efc5fc42c9b2ae7e22b47aef1af0c82be
