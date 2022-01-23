@@ -1,7 +1,7 @@
 from random import random
 from google.cloud import bigquery
-from .User import User
-from .Paper import Paper
+from User import User
+from Paper import Paper
 from typing import List
 import os
 
@@ -124,7 +124,7 @@ class gcp_interface(object):
 
     # get all papers that are marked is_on_sale from database and return a list of paper objects
     def get_all_on_sale_papers(self) -> List[Paper]:
-        query = "SELECT * FROM {} WHERE is_on_sale = True".format(self.table_id["paper"])
+        query = "SELECT * FROM {} WHERE is_on_sale = 'True'".format(self.table_id["paper"])
         query_job = self.client.query(query)
         return [Paper(row[0], row[1], row[2], row[3], row[4], row[5].split(" "), row[6], row[7], row[8]) for row in query_job]
 

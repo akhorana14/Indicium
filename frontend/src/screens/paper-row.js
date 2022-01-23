@@ -15,7 +15,7 @@ function PaperRow(props) {
             {props.paper.title}
         </div>
         <div id="paper-row-author">
-            Author: {props.paper.author}
+            Author: {props.paper.official_author}
         </div>
         </div>
     );

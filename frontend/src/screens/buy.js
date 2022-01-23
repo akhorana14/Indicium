@@ -23,7 +23,6 @@ function Buy() {
     let navigate = useNavigate()
 
     useEffect(() => {
-        
         axios({
             method: 'get',
             url: `http://localhost:5000/paper/id=${id}`,
