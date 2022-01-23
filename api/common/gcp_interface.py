@@ -1,7 +1,7 @@
 from random import random
 from google.cloud import bigquery
-from .User import User
-from .Paper import Paper
+from User import User
+from Paper import Paper
 from typing import List
 import os
 
@@ -23,7 +23,7 @@ query =
 class gcp_interface(object):
 
     def __init__(self):
-        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"/Users/abhinavdusi/Desktop/indicium-339016-6890be5f9725.json"
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"/Users/jacobzietek/Downloads/indicium-339016-6890be5f9725.json"
         self.client = bigquery.Client()
         self.table_id = {"paper": "indicium-339016.purdue.papers", "user": "indicium-339016.purdue.users"}
 
@@ -124,7 +124,7 @@ class gcp_interface(object):
 
     # get all papers that are marked is_on_sale from database and return a list of paper objects
     def get_all_on_sale_papers(self) -> List[Paper]:
-        query = "SELECT * FROM {} WHERE is_on_sale = True".format(self.table_id["paper"])
+        query = "SELECT * FROM {} WHERE is_on_sale = 'True'".format(self.table_id["paper"])
         query_job = self.client.query(query)
         return [Paper(row[0], row[1], row[2], row[3], row[4], row[5].split(" "), row[6], row[7], row[8]) for row in query_job]
 
@@ -170,3 +170,15 @@ class gcp_interface(object):
         query_job = self.client.query(query)
         for row in query_job:
             return row[0]
+
+    # get all papers that are that are currently owned by a given user
+    def get_all_papers_owned_by_user(self, user_id: int) -> List[Paper]:
+        query = "SELECT * FROM {} WHERE current_owner = {}".format(self.table_id["paper"], user_id)
+        query_job = self.client.query(query)
+        return [Paper(row[0], row[1], row[2], row[3], row[4], row[5].split(" "), row[6], row[7], row[8]) for row in query_job]
+
+    # change paper for sale to true
+    def make_paper_for_sale(self, paper_id: int) -> bool:
+        query = "UPDATE {} SET is_on_sale = 'True' WHERE id = {}".format(self.table_id["paper"], paper_id)
+        query_job = self.client.query(query)
+        return query_job.result().total_rows > 0
