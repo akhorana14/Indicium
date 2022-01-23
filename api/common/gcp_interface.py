@@ -68,6 +68,7 @@ class gcp_interface(object):
         query = "INSERT INTO {} (id, username, password, papersOwned, wallet) VALUES ({}, '{}', '{}', '{}', '{}')".format(self.table_id["user"], user_id, username, password, papersOwned, wallet)
         query_job = self.client.query(query)
         query_job.result()
+        self.delete_duplicate_users()
         return User(user_id, username, papersOwned, password, wallet)
 
     def create_paper(self, author_id: int, title: str, link: str, abstract: str, num_papers: int) -> int:
@@ -158,5 +159,11 @@ class gcp_interface(object):
             self.decrement_wallet(buyer_id, float(paper.price))
             return True
         return False
+
+    #delete all duplicate users from the database
+    def delete_duplicate_users(self) -> None:
+        query = "DELETE FROM {} WHERE id NOT IN (SELECT MIN(id) FROM {} GROUP BY username)".format(self.table_id["user"], self.table_id["user"])
+        query_job = self.client.query(query)
+        query_job.result()
 
         
