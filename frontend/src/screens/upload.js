@@ -5,20 +5,20 @@ import React, { useState } from 'react'
 import axios from 'axios';
 
 function Upload() {
-    function get_username_from_cookie() {
+    function get_id_from_cookie() {
         return document.cookie
         .split('; ')
         .map(cookie => cookie.split('='))
-        .find(cookie => cookie[0] === 'username')[1];
+        .find(cookie => cookie[0] === 'id')[1];
     }
 
     function handleUpload() {
         axios({
             method: 'post',
-            url: `http://localhost:5000/upload`,
+            url: `http://localhost:5000/create_paper`,
             data: {
                 title: title,
-                author: get_username_from_cookie(),
+                author_id: get_id_from_cookie(),
                 link: text,
                 abstract: text.substring(0, text/3),
                 num_papers: count
