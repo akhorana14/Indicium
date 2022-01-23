@@ -20,7 +20,7 @@ function Upload() {
                 title: title,
                 author_id: get_id_from_cookie(),
                 link: text,
-                abstract: text.substring(0, text/3),
+                abstract: text.substring(0, text.length/3),
                 num_papers: count
             }
         }).then( res => { 

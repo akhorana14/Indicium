@@ -1,7 +1,7 @@
 from random import random
 from google.cloud import bigquery
-from User import User
-from Paper import Paper
+from .User import User
+from .Paper import Paper
 from typing import List
 import os
 
@@ -23,7 +23,7 @@ query =
 class gcp_interface(object):
 
     def __init__(self):
-        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"/Users/jacobzietek/Downloads/indicium-339016-6890be5f9725.json"
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"/Users/abhinavdusi/Desktop/indicium-339016-6890be5f9725.json"
         self.client = bigquery.Client()
         self.table_id = {"paper": "indicium-339016.purdue.papers", "user": "indicium-339016.purdue.users"}
 
@@ -185,9 +185,12 @@ class gcp_interface(object):
         query = "UPDATE {} SET is_on_sale = 'True' WHERE id = {}".format(self.table_id["paper"], paper_id)
         query_job = self.client.query(query)
         return query_job.result().total_rows > 0
+<<<<<<< HEAD
 
     # set all user wallets to "100.00" where the user's current balance is < 100
     def set_all_user_wallets(self) -> None:
         query = "UPDATE {} SET wallet = '100.00' WHERE wallet < '100.00'".format(self.table_id["user"])
         query_job = self.client.query(query)
         query_job.result()
+=======
+>>>>>>> fae98a1efc5fc42c9b2ae7e22b47aef1af0c82be
