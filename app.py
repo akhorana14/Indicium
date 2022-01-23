@@ -21,6 +21,23 @@ def serve(path):
 def displayPaper(id):
     return getPaper(id).get_dict()
 
+@app.route("/user/id=<int:id>", methods=['GET'])
+def displayUser(id):
+    return getUser(id).get_dict()
+
+@app.route("/user_signup", methods=['POST'])
+def user_signup(username, password):
+    user = create_user(username, password)
+    if (user == 1) return 1
+    return user.get_dict()
+
+@app.route("/user_login", methods=['POST'])
+def user_login(username, password):
+    user = login(username, password)
+    if (user == 1) return 1
+    return user.get_dict()
+
+
 '''
 try:
     from api.PaperApiHandler import PaperApiHandler

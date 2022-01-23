@@ -14,6 +14,10 @@ function SignupForm(props) {
             axios({
                 method: 'post',
                 url: `http://localhost:5000/user_signup`,
+                data: {
+                    username = document.getElementById("input-email"),
+                    password = document.getElementById("input-password")
+                }
             }).then( res => { 
                 //res = user object
                 
@@ -22,6 +26,7 @@ function SignupForm(props) {
                 //setAbstract(res.data.abstract);
                 //setPrice(res.data.price);
                 console.log(res);
+                navigate("/home")
             }).catch(error => {
                 console.log(error);
                 navigate("/404");
