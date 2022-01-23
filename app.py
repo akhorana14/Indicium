@@ -45,8 +45,14 @@ def user_login(username, password):
         return 1
     return user.get_dict()
 
-@app.route("/create_paper/author_id=<int:author_id>/title=<str:title>/link=<str:title>/abstract=<str:abstract>/num_papers=<int:num_papers>", methods=['POST'])
-def create_paper(author_id, title, link, abstract, num_papers):
+@app.route("/create_paper", methods=['POST'])
+def create_paper():
+    request_body = request.get_json()
+    author_id = request_body['author_id']
+    title = request_body['title']
+    link = request_body['link']
+    abstract = request_body['abstract']
+    num_papers = int(request_body['num_papers'])
     return [x.get_dict() for x in createResearchPaper(author_id, title, link, abstract, num_papers)]
 
 '''
