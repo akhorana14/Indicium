@@ -170,3 +170,15 @@ class gcp_interface(object):
         query_job = self.client.query(query)
         for row in query_job:
             return row[0]
+
+    # get all papers that are that are currently owned by a given user
+    def get_all_papers_owned_by_user(self, user_id: int) -> List[Paper]:
+        query = "SELECT * FROM {} WHERE current_owner = {}".format(self.table_id["paper"], user_id)
+        query_job = self.client.query(query)
+        return [Paper(row[0], row[1], row[2], row[3], row[4], row[5].split(" "), row[6], row[7], row[8]) for row in query_job]
+
+    # change paper for sale to true
+    def make_paper_for_sale(self, paper_id: int) -> bool:
+        query = "UPDATE {} SET is_on_sale = 'True' WHERE id = {}".format(self.table_id["paper"], paper_id)
+        query_job = self.client.query(query)
+        return query_job.result().total_rows > 0
