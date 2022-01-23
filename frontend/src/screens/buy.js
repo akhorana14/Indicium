@@ -66,7 +66,8 @@ function Buy() {
         method: 'post',
         url: `http://localhost:5000/sell`,
         data: {
-            paper_id: id
+            paper_id: id,
+            price: price
         }
     }).then( res => { 
         console.log(res);

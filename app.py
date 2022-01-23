@@ -82,7 +82,8 @@ def buyPaper():
 def sellPaper():
     request_body = request.get_json()
     paper_id = request_body['paper_id']
-    result = gcp.make_paper_for_sale(paper_id)
+    price = request_body['price']
+    result = gcp.make_paper_for_sale(paper_id, price)
     return {
         "result": result
         }
