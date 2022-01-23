@@ -18,7 +18,8 @@ def main():
 
     #print(gcp.get_paper(4796))
 
-    print(gcp.get_all_on_sale_papers())
+    #gcp.make_paper_for_sale(839)
+    gcp.set_all_user_wallets()
 
     
 
