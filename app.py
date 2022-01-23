@@ -3,6 +3,8 @@ from flask import Flask, send_from_directory
 from flask_restful import Api, Resource, reqparse
 from flask_cors import CORS #comment this on deployment
 from api.HelloApiHandler import HelloApiHandler
+from api.POST_functions import *
+from api.GET_functions import *
 
 import sys
 
@@ -14,9 +16,15 @@ api = Api(app)
 def serve(path):
     return send_from_directory(app.static_folder,'index.html')
 
+
+@app.route("/paper/id=<int:id>", methods=['GET'])
+def displayPaper(id):
+    return getPaper(id).get_dict()
+
+'''
 try:
     from api.PaperApiHandler import PaperApiHandler
-    api.add_resource(PaperApiHandler, '/paper/')
+    api.add_resource(PaperApiHandler, '/paper/*')
     api.add_resource(HelloApiHandler, '/flask/hello')
     
 except Exception as e:
@@ -29,3 +37,4 @@ except Exception as e:
     print("File name: ", filename)
     print("Line number: ", line_number)
 
+'''
