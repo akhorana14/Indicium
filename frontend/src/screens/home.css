@@ -39,6 +39,14 @@
     margin-bottom:20px;
 }
 
+#profile {
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+  width: max-content;
+  margin: 10px;
+}
+
 .rows:hover {
     background-color: #ffffcc;
 }

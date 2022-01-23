@@ -12,7 +12,7 @@ function Profile() {
 
     const [papers, setPapers] = useState([]);
     const [isBusy, setBusy] = useState(true);
-    const [balance, setBalance]  = useState("");
+    const [balance, setBalance]  = useState("--.--");
 
     let navigate = useNavigate();
 
@@ -57,6 +57,13 @@ function Profile() {
                 <div id="background">
                     <div id="profile-page">
                         <div id="title">My Profile</div>
+
+                        <div>
+                            <span id="profile"onClick={() => navigate("/home")}>GO HOME</span>
+                            <span id="profile"onClick={() => navigate("/upload")}>UPLOAD PAPER</span>
+                            <span id="profile"onClick={() => navigate("/login")}>SIGN OUT</span>
+                        </div>
+
                         <div id="account-balance-info">Account Balance: ${balance}</div>
                         <div id="papers-title">Papers Owned</div>
                         {

@@ -11,6 +11,14 @@
 
 }
 
+#profile {
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+  width: max-content;
+  margin: 10px;
+}
+
 #title::selection {
     background:  #dddddd ;
   }

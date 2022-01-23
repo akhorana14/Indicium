@@ -34,9 +34,13 @@ function Home() {
     });
     return !isBusy ? (
         <div id="background">
-
+            
             <div id="home-page">
                 <div id="title">Indicium</div>
+        <div>
+            <span id="profile"onClick={() => navigate("/profile")}>VIEW PROFILE</span>
+            <span id="profile"onClick={() => navigate("/login")}>SIGN OUT</span>
+        </div>
                     {
                         papers.map(function(paper, index) {
                             // return PaperRow({paper, index});

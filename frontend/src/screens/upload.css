@@ -4,13 +4,26 @@
     text-align: left;
     font-family: 'Oswald';
     border-radius: 5px;
-    margin: 5vw;
+    margin-left: 25vw;
+}
+
+#header {
+    text-align: center;
+    margin: auto;
+}
+
+#profile {
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+  width: max-content;
+  margin: 10px;
 }
 
 #upload-title{
     padding-top: 10%;
     font-weight: bold;
-    font-size:50px;
+    font-size:100px;
 }
 
 .input-upload {
@@ -20,7 +33,7 @@
     width: 25%;
     height: 5vh;
     outline: none;
-    border-radius:15vh;
+    border-radius:15px;
     font-size:small;
     padding-left:5%;
     font-family: 'Oswald';
@@ -56,7 +69,7 @@
   }
 
   #upload-submit {
-    margin-top:5vh;
+    margin-top:1vh;
     margin-bottom: 5vh;
     outline: none;
     border: none;
@@ -64,12 +77,11 @@
     color: white;
     height: 5vh;
     width:25%;
-    border-radius:15vh;
+    border-radius:25px;
     font-weight: bold;
     font-family: 'Oswald';
     cursor: pointer;  
     transition: all .2s ease-in-out;
-
   }
 
   #upload-submit:hover {
