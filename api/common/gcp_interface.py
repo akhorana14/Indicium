@@ -164,3 +164,9 @@ class gcp_interface(object):
         query = "DELETE FROM {} WHERE id NOT IN (SELECT MIN(id) FROM {} GROUP BY username)".format(self.table_id["user"], self.table_id["user"])
         query_job = self.client.query(query)
         query_job.result()
+
+    def get_user_id_from_username(self, username: str) -> int:
+        query = "SELECT id FROM {} WHERE username = '{}'".format(self.table_id["user"], username)
+        query_job = self.client.query(query)
+        for row in query_job:
+            return row[0]

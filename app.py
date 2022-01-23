@@ -23,7 +23,7 @@ def displayPaper(id):
 
 @app.route("/user/id=<int:id>", methods=['GET'])
 def displayUser(id):
-    return getUser(id).get_dict()
+    return GetUser(id).get_dict()
 
 @app.route("/user_signup", methods=['POST'])
 def user_signup():
@@ -45,6 +45,9 @@ def user_login(username, password):
         return 1
     return user.get_dict()
 
+@app.route("/create_paper/author_id=<int:author_id>/title=<str:title>/link=<str:title>/abstract=<str:abstract>/num_papers=<int:num_papers>", methods=['POST'])
+def create_paper(author_id, title, link, abstract, num_papers):
+    return [x.get_dict() for x in createResearchPaper(author_id, title, link, abstract, num_papers)]
 
 '''
 try:
