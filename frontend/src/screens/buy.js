@@ -53,6 +53,7 @@ function Buy() {
             }
         }).then( res => { 
             console.log(res);
+            window.location.reload(false);
         }).catch(error => {
             console.log(error);
             navigate("/404");
@@ -69,6 +70,7 @@ function Buy() {
         }
     }).then( res => { 
         console.log(res);
+        window.location.reload(false);
     }).catch(error => {
         console.log(error);
         navigate("/404");
