@@ -17,7 +17,7 @@ function Profile() {
     let navigate = useNavigate();
 
     function handleClick(id) {
-        navigate(`/buy/${id}`);
+        navigate(`/profile/${id}`);
     }
 
 

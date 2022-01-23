@@ -15,7 +15,7 @@ function Home() {
     let navigate = useNavigate();
 
     function handleClick(id) {
-        navigate(`/buy/${id}`);
+        navigate(`/paper/${id}`);
     }
 
     useEffect(() => {
