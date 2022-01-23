@@ -64,7 +64,7 @@ class gcp_interface(object):
             return None
         user_id = self.generate_unique_user_id()
         papersOwned = ""
-        wallet = "0"
+        wallet = "100.00"
         query = "INSERT INTO {} (id, username, password, papersOwned, wallet) VALUES ({}, '{}', '{}', '{}', '{}')".format(self.table_id["user"], user_id, username, password, papersOwned, wallet)
         query_job = self.client.query(query)
         query_job.result()
@@ -148,6 +148,9 @@ class gcp_interface(object):
     def buy_paper(self, paper_id: int, buyer_id: int) -> bool:
         paper = self.get_paper(paper_id)
         seller_id = paper.current_owner
+        # if buyer balance is less than paper price return false
+        if self.get_user(buyer_id).wallet < paper.price:
+            return False
         if paper.current_owner == buyer_id:
             return False
         query = "UPDATE {} SET current_owner = {}, previous_owners = CONCAT(previous_owners, ' ', '{}'), is_on_sale = False, price = '{}' WHERE id = {}".format(self.table_id["paper"], buyer_id, buyer_id, paper.price, paper_id)
@@ -182,3 +185,9 @@ class gcp_interface(object):
         query = "UPDATE {} SET is_on_sale = 'True' WHERE id = {}".format(self.table_id["paper"], paper_id)
         query_job = self.client.query(query)
         return query_job.result().total_rows > 0
+
+    # set all user wallets to "100.00" where the user's current balance is < 100
+    def set_all_user_wallets(self) -> None:
+        query = "UPDATE {} SET wallet = '100.00' WHERE wallet < '100.00'".format(self.table_id["user"])
+        query_job = self.client.query(query)
+        query_job.result()
