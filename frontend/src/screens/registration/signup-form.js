@@ -8,8 +8,10 @@ import { useState } from 'react'
 function SignupForm(props) {
     let navigate = useNavigate();
     useEffect(() => {
-        document.cookie = "username=adusi";
-        console.log(document.cookie)
+        //document.cookie = "username=; Max-Age=0"
+        if (document.cookie.includes("username=")) {
+            navigate("/home")
+        }
     }); 
 
     const [username, setUsername] = useState("");
@@ -17,7 +19,7 @@ function SignupForm(props) {
     const [password2, setPassword2] = useState("");
 
     function handleSignup() {
-        if (password2 != password) {
+        if (password2 !== password) {
             alert("Passwards don't match");
         } else {
             axios({
@@ -29,7 +31,7 @@ function SignupForm(props) {
                 }
             }).then( res => { 
                 console.log(res);
-                // document.cookie = 'username=' + res.data.username + ';';
+                document.cookie = 'username=' + res.data.username + ';';
                 navigate("/home")
             }).catch(error => {
                 console.log(error);
