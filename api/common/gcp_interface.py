@@ -60,6 +60,7 @@ class gcp_interface(object):
         return random_id
 
     def create_user(self, username: str, password: str) -> User:
+        self.delete_duplicate_users()
         if self.user_exits(username):
             return None
         user_id = self.generate_unique_user_id()
@@ -68,7 +69,6 @@ class gcp_interface(object):
         query = "INSERT INTO {} (id, username, password, papersOwned, wallet) VALUES ({}, '{}', '{}', '{}', '{}')".format(self.table_id["user"], user_id, username, password, papersOwned, wallet)
         query_job = self.client.query(query)
         query_job.result()
-        self.delete_duplicate_users()
         return User(user_id, username, papersOwned, password, wallet)
 
     def create_paper(self, author_id: int, title: str, link: str, abstract: str, num_papers: int) -> int:
