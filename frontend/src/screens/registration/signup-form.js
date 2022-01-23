@@ -8,10 +8,12 @@ import { useState } from 'react'
 function SignupForm(props) {
     let navigate = useNavigate();
     useEffect(() => {
-        //document.cookie = "username=; Max-Age=0"
-        if (document.cookie.includes("username=")) {
+        document.cookie = "id=; Max-Age=0"
+        /*
+        if (document.cookie.includes("id=")) {
             navigate("/home")
         }
+        */
     }); 
 
     const [username, setUsername] = useState("");
@@ -31,7 +33,7 @@ function SignupForm(props) {
                 }
             }).then( res => { 
                 console.log(res);
-                document.cookie = 'username=' + res.data.username + ';';
+                document.cookie = 'id=' + res.data.id + ';';
                 navigate("/home")
             }).catch(error => {
                 console.log(error);

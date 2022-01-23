@@ -6,10 +6,12 @@ import { useNavigate } from 'react-router-dom';
 function LoginForm(props) {
     let navigate = useNavigate();
     useEffect(() => {    
-        //document.cookie = "username=; Max-Age=0"
-        if (document.cookie.includes("username=")) {
+        document.cookie = "id=; Max-Age=0"
+        /*
+        if (document.cookie.includes("id=")) {
             navigate("/home")
         }
+        */
     }); 
 
     const [username, setUsername] = useState("");
