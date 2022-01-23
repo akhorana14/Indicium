@@ -1,3 +1,4 @@
+from ast import Str
 from random import random
 from google.cloud import bigquery
 from .User import User
@@ -184,8 +185,8 @@ class gcp_interface(object):
         return [Paper(row[0], row[1], row[2], row[3], row[4], row[5].split(" "), row[6], row[7], row[8]) for row in query_job]
 
     # change paper for sale to true and set price to the given price
-    def make_paper_for_sale(self, paper_id: int, price: string) -> bool:
-        query = "UPDATE {} SET is_on_sale = 'True', price = {} WHERE id = {}".format(self.table_id["paper"], price, paper_id)
+    def make_paper_for_sale(self, paper_id: int, price: Str) -> bool:
+        query = "UPDATE {} SET is_on_sale = 'True', price = '{}' WHERE id = {}".format(self.table_id["paper"], price, paper_id)
         query_job = self.client.query(query)
         return query_job.result().total_rows > 0
 
