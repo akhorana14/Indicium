@@ -18,6 +18,7 @@ function Buy() {
     const [abstract, setAbstract] = useState("Loading...");
     const [price, setPrice] = useState(0.00);
     const [currentOwner, setCurrentOwner] = useState("");
+    const [onSale, setOnSale] = useState(false);
 
     let navigate = useNavigate()
 
@@ -33,6 +34,7 @@ function Buy() {
             setAbstract(res.data.abstract);
             setPrice(res.data.price);
             setCurrentOwner(res.data.current_owner);
+            setOnSale(res.data.is_on_sale==="True")
             console.log(res);
         }).catch(error => {
             console.log(error);
@@ -42,15 +44,38 @@ function Buy() {
     }, []);
 
     function buy() {
-
+        axios({
+            method: 'post',
+            url: `http://localhost:5000/buy`,
+            data: {
+                buyer_id: get_id_from_cookie(),
+                paper_id: id
+            }
+        }).then( res => { 
+            console.log(res);
+        }).catch(error => {
+            console.log(error);
+            navigate("/404");
+        })
     }
     
     function sell() {
-        console.log("Selling paper");
+        console.log(id);
+        axios({
+        method: 'post',
+        url: `http://localhost:5000/sell`,
+        data: {
+            paper_id: id
+        }
+    }).then( res => { 
+        console.log(res);
+    }).catch(error => {
+        console.log(error);
+        navigate("/404");
+    })
     }
 
     function ifOwned() {
-        console.log(currentOwner);
         return currentOwner==get_id_from_cookie();
     }
 
@@ -60,6 +85,26 @@ function Buy() {
         .split('; ')
         .map(cookie => cookie.split('='))
         .find(cookie => cookie[0] === 'id')[1];
+    }
+
+    function display() {
+        if(!ifOwned() && onSale){
+            return <button id="buy-button" onClick={buy}>BUY ${Number(price).toFixed(2)}</button>;
+        }
+
+        if (ifOwned() && !onSale) {
+            return (
+                <div>
+                    <input type="text" id="input-sell"
+                    placeholder="Sell price"
+                    onChange = {e => setPrice(e.target.value)}/>
+                    <br />
+                    <button id="sell-button" onClick={sell}>SELL</button>
+                </div>
+            )
+        }
+
+        return <div></div>
     }
 
     return (
@@ -74,19 +119,7 @@ function Buy() {
                 <div id="buy-abstract"> 
                     {abstract}
                 </div>
-                {
-                    ifOwned() ? 
-                    (<button id="buy-button" onClick={buy}>BUY ${Number(price).toFixed(2)}</button>) : 
-                    (
-                        <div>
-                       <input type="text" id="input-sell"
-                        placeholder="Sell price"
-                        onChange = {e => setPrice(e.target.value)}/>
-                        <br />
-                        <button id="sell-button" onClick={sell}>SELL </button>
-                        </div>
-                    )
-                }
+                {display()}
         </div>
         </div>
     );

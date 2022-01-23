@@ -156,7 +156,7 @@ class gcp_interface(object):
             return False
         if paper.current_owner == buyer_id:
             return False
-        query = "UPDATE {} SET current_owner = {}, previous_owners = CONCAT(previous_owners, ' ', '{}'), is_on_sale = False, price = '{}' WHERE id = {}".format(self.table_id["paper"], buyer_id, buyer_id, paper.price, paper_id)
+        query = "UPDATE {} SET current_owner = {}, previous_owners = CONCAT(previous_owners, ' ', '{}'), is_on_sale = 'False', price = '{}' WHERE id = {}".format(self.table_id["paper"], buyer_id, buyer_id, paper.price, paper_id)
         query_job = self.client.query(query)
         if query_job.result().total_rows > 0:
             self.increment_wallet(paper.official_author, float(paper.price) * 0.05)

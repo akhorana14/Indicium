@@ -67,6 +67,25 @@ def create_paper():
     num_papers = int(request_body['num_papers'])
     return [x.get_dict() for x in createResearchPaper(author_id, title, link, abstract, num_papers)]
 
+
+@app.route("/buy", methods=['POST'])
+def buyPaper():
+    request_body = request.get_json()
+    buyer_id = request_body['buyer_id']
+    paper_id = request_body['paper_id']
+    result = gcp.buy_paper(paper_id, buyer_id)
+    return {
+        "result": result
+        }
+
+@app.route("/sell", methods=['POST'])
+def sellPaper():
+    request_body = request.get_json()
+    paper_id = request_body['paper_id']
+    result = gcp.make_paper_for_sale(paper_id)
+    return {
+        "result": result
+        }
 '''
 try:
     from api.PaperApiHandler import PaperApiHandler

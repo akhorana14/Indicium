@@ -22,7 +22,7 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/upload" element={<Upload />} />
-            <Route path="/buy/:id" element={<Buy />} />
+            <Route path="/paper/:id" element={<Buy />} />
             <Route path="*" element={<Error />}></Route>
         </Routes>
       </Router>
