@@ -127,8 +127,6 @@ class gcp_interface(object):
         query = "SELECT * FROM {} WHERE is_on_sale = True".format(self.table_id["paper"])
         query_job = self.client.query(query)
         return [Paper(row[0], row[1], row[2], row[3], row[4], row[5].split(" "), row[6], row[7], row[8]) for row in query_job]
-<<<<<<< HEAD
-=======
 
 
     #given a username increment the wallet by a given amount
@@ -166,6 +164,3 @@ class gcp_interface(object):
         query = "DELETE FROM {} WHERE id NOT IN (SELECT MIN(id) FROM {} GROUP BY username)".format(self.table_id["user"], self.table_id["user"])
         query_job = self.client.query(query)
         query_job.result()
-
-        
->>>>>>> 7318ae45ae225cb6e0b9bcaea740bed4056f513a
