@@ -183,9 +183,9 @@ class gcp_interface(object):
         query_job = self.client.query(query)
         return [Paper(row[0], row[1], row[2], row[3], row[4], row[5].split(" "), row[6], row[7], row[8]) for row in query_job]
 
-    # change paper for sale to true
-    def make_paper_for_sale(self, paper_id: int) -> bool:
-        query = "UPDATE {} SET is_on_sale = 'True' WHERE id = {}".format(self.table_id["paper"], paper_id)
+    # change paper for sale to true and set price to the given price
+    def make_paper_for_sale(self, paper_id: int, price: float) -> bool:
+        query = "UPDATE {} SET is_on_sale = 'True', price = {} WHERE id = {}".format(self.table_id["paper"], price, paper_id)
         query_job = self.client.query(query)
         return query_job.result().total_rows > 0
 
