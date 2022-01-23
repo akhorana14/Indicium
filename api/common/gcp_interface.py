@@ -134,16 +134,34 @@ class gcp_interface(object):
 
 
     #given a username increment the wallet by a given amount
+    #take the username's wallet, cast it to a float, add the amount, cast it back to a string,
+    # and update the user's wallet in the database
     def increment_wallet(self, username: str, amount: float) -> bool:
-        query = "UPDATE {} SET wallet = wallet + {} WHERE username = '{}'".format(self.table_id["user"], amount, username)
+        query = "SELECT wallet FROM {} WHERE username = '{}'".format(self.table_id["user"], username)
         query_job = self.client.query(query)
-        return query_job.result().total_rows > 0
+        for row in query_job:
+            wallet = float(row[4])
+            wallet += amount
+            query = "UPDATE {} SET wallet = '{}' WHERE username = '{}'".format(self.table_id["user"], str(wallet), username)
+            query_job = self.client.query(query)
+            query_job.result()
+            return True
+        return False
 
     #given a username decrement the wallet by a given amount
+    #take the username's wallet, cast it to a float, add the amount, cast it back to a string,
+    # and update the user's wallet in the database
     def decrement_wallet(self, username: str, amount: float) -> bool:
-        query = "UPDATE {} SET wallet = wallet - {} WHERE username = '{}'".format(self.table_id["user"], amount, username)
+        query = "SELECT wallet FROM {} WHERE username = '{}'".format(self.table_id["user"], username)
         query_job = self.client.query(query)
-        return query_job.result().total_rows > 0
+        for row in query_job:
+            wallet = float(row[4])
+            wallet -= amount
+            query = "UPDATE {} SET wallet = '{}' WHERE username = '{}'".format(self.table_id["user"], str(wallet), username)
+            query_job = self.client.query(query)
+            query_job.result()
+            return True
+        return False
 
     # given a paper id and a buyer user id, update the current owner of the paper to the buyer user id, 
     # add the buyer id to the previous owners list, and set the is_on_sale to false,
