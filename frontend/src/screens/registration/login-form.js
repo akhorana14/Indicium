@@ -12,9 +12,9 @@ function LoginForm(props) {
     return (
         <div id="login-form">
             <div id="login-title">
-                Log in with email
+                Log in with username
             </div>
-            <input type="text" id="input-email" className="input" placeholder="Email" />
+            <input type="text" id="input-email" className="input" placeholder="Username" />
             <input type="password" id="input-password" className="input" placeholder="Password" />
             <button id="login-submit" onClick={goHome}>LOG IN</button>
             <div id="no-account">Don't have an account?</div>

@@ -15,9 +15,9 @@ function Author(name) {
 
 function Buy() {
     const { id } = useParams();
-    const [author, setAuthor] = useState("Dr. Arjun Khorana");
-    const [title, setTitle] = useState("Title");
-    const [abstract, setAbstract] = useState("Loreum Ipsum");
+    const [author, setAuthor] = useState("Loading...");
+    const [title, setTitle] = useState("Loading...");
+    const [abstract, setAbstract] = useState("Loading...");
     const [price, setPrice] = useState(0.00);
 
     let navigate = useNavigate()

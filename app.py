@@ -1,5 +1,5 @@
 
-from flask import Flask, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory
 from flask_restful import Api, Resource, reqparse
 from flask_cors import CORS #comment this on deployment
 from api.HelloApiHandler import HelloApiHandler
@@ -26,15 +26,23 @@ def displayUser(id):
     return getUser(id).get_dict()
 
 @app.route("/user_signup", methods=['POST'])
-def user_signup(username, password):
+def user_signup():
+    request_body = request.get_json()
+    print(request_body)
+    username = request_body['username']
+    password = request_body['password']
+    print(username, ", ", password)
     user = create_user(username, password)
-    if (user == 1) return 1
+    if (user == 1):
+        return 1
     return user.get_dict()
+    # return {"hi": "hi"}
 
 @app.route("/user_login", methods=['POST'])
 def user_login(username, password):
     user = login(username, password)
-    if (user == 1) return 1
+    if (user == 1):
+        return 1
     return user.get_dict()
 
 

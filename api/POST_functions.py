@@ -5,13 +5,13 @@ from .common.gcp_interface import gcp_interface
 gcp = gcp_interface()
 
 def login(username, password):
-    user = gcp.loginUser(username, password)
+    user = gcp.login_user(username, password)
     if (user == None):
         return 1
     return user 
 
 def create_user(username, password):
-    user = gcp.createUser(username, password)
+    user = gcp.create_user(username, password)
     return user if user else 1
 
 def createResearchPaper(author_id, title, link, abstract, num_papers):
